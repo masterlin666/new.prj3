@@ -40,7 +40,7 @@ Move player1::get_move(State *state, int depth){
   Move bst;
   for(auto actions = state->legal_actions.begin();actions!=state->legal_actions.end();actions++){
     
-    int result=minimax(state->next_state(*actions),depth-3,0);
+    int result=minimax(state->next_state(*actions),depth-1,0);
     if(lrg<result){
       lrg=result;
       bst=*actions;

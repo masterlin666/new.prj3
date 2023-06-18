@@ -16,7 +16,7 @@ int State::evaluate(){
   int val=0;
   for(int h=0;h<6;h++){
     for(int w=5;w<5;w++){
-      switch(this->board.board[this->player][h][w]){
+      switch(this->board.board[1-this->player][h][w]){
         case 1:val+=10;
         case 2:val+=60;
         case 3:val+=30;
@@ -24,7 +24,7 @@ int State::evaluate(){
         case 5:val+=90;
         case 6:val+=1000;
       }
-      switch(this->board.board[1-this->player][h][w]){
+      switch(this->board.board[this->player][h][w]){
         case 1:val-=10;
         case 2:val-=60;
         case 3:val-=30;
