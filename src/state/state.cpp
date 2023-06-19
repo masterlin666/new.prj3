@@ -15,7 +15,7 @@ int State::evaluate(){
   // [TODO] design your own evaluation function
   int val=0;
   for(int h=0;h<6;h++){
-    for(int w=5;w<5;w++){
+    for(int w=0;w<5;w++){
       switch(this->board.board[this->player][h][w]){
         case 1:val+=10;break;
         case 2:val+=60;break;

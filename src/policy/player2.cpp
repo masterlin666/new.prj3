@@ -37,6 +37,8 @@ int player2::alphabeta(State *state,int depth,int alpha,int beta,bool me){
 Move player2::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
+  
+
   int lrg=-1e6;
   Move bst;
   for(auto actions = state->legal_actions.begin();actions!=state->legal_actions.end();actions++){
