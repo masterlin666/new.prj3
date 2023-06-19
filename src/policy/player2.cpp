@@ -4,24 +4,25 @@
 #include "./player2.hpp"
 int value;
 int player2::alphabeta(State *state,int depth,int alpha,int beta,bool me){
-  if(!state->legal_actions.size())
-    state->get_legal_actions();
-  if(depth==0||state->legal_actions.empty())return state->evaluate();
+  state->get_legal_actions();
+  if(depth==0||state->legal_actions.empty())return (me?state->evaluate():state->evaluate()*-1);
   if(me){
-    alpha=-999999;
+    value=-1e6;
     for(auto actions = state->legal_actions.begin();actions!=state->legal_actions.end();actions++){
       value=std::max(value,alphabeta(state->next_state(*actions),depth-1,alpha,beta,!me));
+      alpha=std::max(value,alpha);
       if(alpha>=beta)break;
     }
-    return alpha;
+    return value;
   }
   else {
-    beta=999999;
+    value=1e6;
     for(auto actions = state->legal_actions.begin();actions!=state->legal_actions.end();actions++){
-      value=std::min(beta,alphabeta(state->next_state(*actions),depth-1,alpha,beta,!me));
+      value=std::min(value,alphabeta(state->next_state(*actions),depth-1,alpha,beta,!me));
+      beta=std::min(value,beta);
       if(alpha>=beta)break;
     }
-    return beta;
+    return value;
   }
 
 }
@@ -36,22 +37,15 @@ int player2::alphabeta(State *state,int depth,int alpha,int beta,bool me){
 Move player2::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
-  
-   
-  int lrg=-99999;
+  int lrg=-1e6;
   Move bst;
   for(auto actions = state->legal_actions.begin();actions!=state->legal_actions.end();actions++){
-    
-    int result=alphabeta(state->next_state(*actions),depth,0,0,0);
-    if(result<=0)result=result*(-1);
+    int result=alphabeta(state->next_state(*actions),depth-1,-1e6,1e6,0);
+
     if(lrg<result){
       lrg=result;
       bst=*actions;
     }
   }
-  
-  /*for(int i=0;i<depth;i++){
-    k=rand()/k;
-  }*/
   return bst;
 }

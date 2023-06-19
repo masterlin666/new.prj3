@@ -16,21 +16,23 @@ int State::evaluate(){
   int val=0;
   for(int h=0;h<6;h++){
     for(int w=5;w<5;w++){
-      switch(this->board.board[1-this->player][h][w]){
-        case 1:val+=10;
-        case 2:val+=60;
-        case 3:val+=30;
-        case 4:val+=40;
-        case 5:val+=90;
-        case 6:val+=1000;
-      }
       switch(this->board.board[this->player][h][w]){
-        case 1:val-=10;
-        case 2:val-=60;
-        case 3:val-=30;
-        case 4:val-=40;
-        case 5:val-=90;
-        case 6:val-=1000;
+        case 1:val+=10;break;
+        case 2:val+=60;break;
+        case 3:val+=30;break;
+        case 4:val+=40;break;
+        case 5:val+=100;break;
+        case 6:val+=1000;break;
+        default:break;
+      }
+      switch(this->board.board[1-this->player][h][w]){
+        case 1:val-=10;break;
+        case 2:val-=60;break;
+        case 3:val-=30;break;
+        case 4:val-=40;break;
+        case 5:val-=100;break;
+        case 6:val-=1000;break;
+        default:break;
       }
     }
       
@@ -41,6 +43,7 @@ int State::evaluate(){
 
 
 
+/**
 /**
  * @brief return next state after the move
  * 
@@ -236,10 +239,10 @@ void State::get_legal_actions(){
 }
 
 
-/*const char PIECE_TABLE[2][7][5] = {
+const char piece_table[2][7][5] = {
   {" ", "♙", "♖", "♘", "♗", "♕", "♔"},
   {" ", "♟", "♜", "♞", "♝", "♛", "♚"}
-};*/
+};
 /**
  * @brief encode the output for command line output
  * 
@@ -251,9 +254,9 @@ std::string State::encode_output(){
   for(int i=0; i<BOARD_H; i+=1){
     for(int j=0; j<BOARD_W; j+=1){
       if((now_piece = this->board.board[0][i][j])){
-        ss << std::string(PIECE_TABLE[0][now_piece]);
+        ss << std::string(piece_table[0][now_piece]);
       }else if((now_piece = this->board.board[1][i][j])){
-        ss << std::string(PIECE_TABLE[1][now_piece]);
+        ss << std::string(piece_table[1][now_piece]);
       }else{
         ss << " ";
       }
