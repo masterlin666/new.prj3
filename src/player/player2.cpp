@@ -32,7 +32,7 @@ void read_board(std::ifstream& fin) {
   root->get_legal_actions();
 }
 
-
+int deep=4;
 /**
  * @brief randomly choose a move and then write it into output file
  * 
@@ -40,9 +40,11 @@ void read_board(std::ifstream& fin) {
  */
 void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
-  while(true) {
+  
+  while(deep<6) {
     // Choose a random spot.
-    auto move = player2::get_move(root, 4);
+    auto move = player2::get_move(root, deep);
+    deep++;
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
     
@@ -63,7 +65,7 @@ int main(int, char** argv) {
   srand(RANDOM_SEED);
   std::ifstream fin(argv[1]);
   std::ofstream fout(argv[2]);
-
+  deep=4;
   read_board(fin);
   write_valid_spot(fout);
 
