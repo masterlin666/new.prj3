@@ -8,7 +8,7 @@ using namespace std;
 int value;
 std::unordered_map<std::string,int> transtable;
 
-int player2::alphabeta(State *state,int depth,int alpha,int beta,bool me){
+int Alphabeta::alphabeta(State *state,int depth,int alpha,int beta,bool me){
   state->get_legal_actions();
   if(transtable.count(state->encode_state()))return transtable[state->encode_state()];
   if(depth==0||state->legal_actions.empty()){
@@ -49,7 +49,7 @@ int player2::alphabeta(State *state,int depth,int alpha,int beta,bool me){
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move player2::get_move(State *state, int depth){
+Move Alphabeta::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
   

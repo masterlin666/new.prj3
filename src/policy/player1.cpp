@@ -3,7 +3,7 @@
 #include "../state/state.hpp"
 #include "./player1.hpp"
 int val;
-int player1::minimax(State *state,int depth,bool me){
+int Minimax::minimax(State *state,int depth,bool me){
   if(!state->legal_actions.size())
     state->get_legal_actions();
   if(depth==0||state->legal_actions.empty())return state->evaluate();
@@ -31,7 +31,7 @@ int player1::minimax(State *state,int depth,bool me){
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move player1::get_move(State *state, int depth){
+Move Minimax::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
   

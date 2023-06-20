@@ -43,7 +43,7 @@ void write_valid_spot(std::ofstream& fout) {
   
   while(deep<6) {
     // Choose a random spot.
-    auto move = player2::get_move(root, deep);
+    auto move = Alphabeta::get_move(root, deep);
     deep++;
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
