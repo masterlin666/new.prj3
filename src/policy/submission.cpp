@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 #include "../state/state.hpp"
-#include "../commission.hpp"
+#include "../submission.hpp"
 //typedef  pair < State , int >  prr;
 int value;
 std::unordered_map<std::string,int> transtable;
