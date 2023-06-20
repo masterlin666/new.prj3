@@ -32,7 +32,6 @@ int State::evaluate(){
         case 5:val-=100;break;
         case 6:val-=10000;break;
         default:break;
-
       }
     }
       
@@ -91,8 +90,8 @@ static const int move_table_knight[8][2] = {
   {-2, 1}, {-2, -1},
 };
 static const int move_table_king[8][2] = {
-  {0, 0}, {0, 1}, {-1, 0}, {0, -1}, 
-  {0, 1}, {0, -1}, {-1, 1}, {-1, -1},
+  {1, 0}, {0, 1}, {-1, 0}, {0, -1}, 
+  {1, 1}, {1, -1}, {-1, 1}, {-1, -1},
 };
 
 
