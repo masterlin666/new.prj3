@@ -22,7 +22,7 @@ int State::evaluate(){
         case 3:val+=30;break;
         case 4:val+=40;break;
         case 5:val+=100;break;
-        case 6:val+=1000;break;
+        case 6:val+=10000;break;
         default:break;
       }
       switch(this->board.board[1-this->player][h][w]){
@@ -31,7 +31,7 @@ int State::evaluate(){
         case 3:val-=30;break;
         case 4:val-=40;break;
         case 5:val-=100;break;
-        case 6:val-=1000;break;
+        case 6:val-=10000;break;
         default:break;
       }
     }
